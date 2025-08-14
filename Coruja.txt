@@ -1,0 +1,185 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(
+    MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: PrimeiraPagina(),
+    ),
+  );
+}
+
+class PrimeiraPagina extends StatelessWidget {
+  const PrimeiraPagina({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.lightGreen[400],
+      appBar: AppBar(
+        title: Text('Hello'),
+        backgroundColor: Colors.lightGreen[800],
+      ),
+      body: SingleChildScrollView( // Adiciona rolagem
+        child: Center(
+          child: Column(
+            children: <Widget>[
+              Text(
+                'Coruja Buraqueira',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 20),
+              Text(
+                'A coruja-buraqueira é uma ave strigiforme da família Strigidae. '
+                'Também conhecida pelos nomes de caburé, caburé-de-cupim, caburé-do-campo, '
+                'coruja-barata, coruja-do-campo, coruja-mineira, corujinha-buraqueira, corujinha-do-buraco, '
+                'corujinha-do-campo, guedé, urucuera, urucureia, urucuriá, coruja-cupinzeira (algumas cidades de Goiás) '
+                'e capotinha. Com o nome científico cunicularia (“pequeno mineiro”), recebe esse nome por cavar buracos no solo. '
+                'Vive cerca de 9 anos em habitat selvagem. Costuma viver em campos, pastos, restingas, desertos, planícies, praias '
+                'e aeroportos.',
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(height: 20),
+              Container(
+                width: 200,
+                color: Colors.lightBlue,
+                margin: EdgeInsets.all(20),
+                padding: EdgeInsets.all(10),
+                child: Image.network(
+                  'https://agron.com.br/wp-content/uploads/2025/05/Como-a-coruja-buraqueira-vive-em-grupo-2.webp',
+                ),
+              ),
+              SizedBox(height: 50),
+              ElevatedButton(
+                onPressed: () {
+                  // Navegar para a Segunda Página
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SegundaPagina(),
+                    ),
+                  );
+                },
+                child: const Text('Próxima'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  // Navegar para a Rolinha do Planalto
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const RolinhaDoPlanalto(),
+                    ),
+                  );
+                },
+                child: const Text('Rolinha do Planalto'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class SegundaPagina extends StatelessWidget {
+  const SegundaPagina({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.lightGreen[400],
+      appBar: AppBar(
+        title: Text('Página B'),
+        backgroundColor: Colors.lightGreen[800],
+      ),
+      body: Center(
+        child: Column(
+          children: <Widget>[
+            Text('Segunda'),
+            SizedBox(height: 50),
+            ElevatedButton(
+              onPressed: () {
+                // Voltar para a Primeira Página
+                Navigator.pop(context);
+              },
+              child: const Text('Voltar'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                // Navegar para a Rolinha do Planalto
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const RolinhaDoPlanalto(),
+                  ),
+                );
+              },
+              child: const Text('Rolinha do Planalto'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class RolinhaDoPlanalto extends StatelessWidget {
+  const RolinhaDoPlanalto({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.lightGreen[400],
+      appBar: AppBar(
+        title: Text('Rolinha do Planalto'),
+        backgroundColor: Colors.lightGreen[800],
+      ),
+      body: Center(
+        child: Column(
+          children: <Widget>[
+            Text(
+              'Rolinha-do-planalto',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 20),
+            Text(
+              'A Rolinha-do-planalto é uma ave pequena e discreta que habita os campos e áreas abertas. '
+              'É conhecida por seu canto suave e sua habilidade de se camuflar entre a vegetação rasteira.',
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 20),
+            Container(
+              width: 200,
+              color: Colors.lightBlue,
+              margin: EdgeInsets.all(20),
+              padding: EdgeInsets.all(10),
+              child: Image.network(
+                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvWgAR0SQJWS2WwSJdz6FNP19rrTDZ-MbPgA&s',
+                
+              ),
+            ),
+            SizedBox(height: 50),
+            ElevatedButton(
+              onPressed: () {
+                // Voltar para a Segunda Página
+                Navigator.pop(context);
+              },
+              child: const Text('Voltar'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                // Navegar de volta para a Primeira Página
+                Navigator.popUntil(
+                  context,
+                  ModalRoute.withName('/'),
+                );
+              },
+              child: const Text('Voltar para a Primeira Página'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

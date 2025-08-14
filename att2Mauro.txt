@@ -1,0 +1,158 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+
+void main() {
+  debugPaintSizeEnabled = false;  
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: PrimeiraPagina(),
+    );
+  }
+}
+
+class PrimeiraPagina extends StatelessWidget {
+  const PrimeiraPagina({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.lightBlue[50],
+      appBar: AppBar(
+        title: Text('Sobre o Personagem'),
+        backgroundColor: Colors.blue[800],
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            CircleAvatar(
+              radius: 80,
+              backgroundImage: NetworkImage(
+                'https://www.example.com/sua-imagem.jpg', // Coloque sua URL ou caminho da imagem
+              ),
+            ),
+            SizedBox(height: 20),
+            Text(
+              'Nome: Carlos',
+              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+            ),
+            Text(
+              'Idade: 50 anos',
+              style: TextStyle(fontSize: 18),
+            ),
+            SizedBox(height: 40),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => FilmesPagina(),
+                  ),
+                );
+              },
+              child: Text('Filmes'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue[700], // Alterado para `backgroundColor` dentro de `style`
+                padding: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+                textStyle: TextStyle(fontSize: 18),
+              ),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => LivrosPagina(),
+                  ),
+                );
+              },
+              child: Text('Livros'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue[700], // Alterado para `backgroundColor` dentro de `style`
+                padding: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+                textStyle: TextStyle(fontSize: 18),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class FilmesPagina extends StatelessWidget {
+  const FilmesPagina({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Filmes Favoritos'),
+        backgroundColor: Colors.blue[800],
+      ),
+      body: ListView(
+        children: <Widget>[
+          ListTile(
+            title: Text('1. Inception (A Origem)'),
+            subtitle: Text('Dirigido por Christopher Nolan'),
+          ),
+          ListTile(
+            title: Text('2. The Matrix (Matrix)'),
+            subtitle: Text('Dirigido por Wachowskis'),
+          ),
+          ListTile(
+            title: Text('3. Interstellar'),
+            subtitle: Text('Dirigido por Christopher Nolan'),
+          ),
+          ListTile(
+            title: Text('4. The Shawshank Redemption'),
+            subtitle: Text('Dirigido por Frank Darabont'),
+          ),
+          ListTile(
+            title: Text('5. The Dark Knight'),
+            subtitle: Text('Dirigido por Christopher Nolan'),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class LivrosPagina extends StatelessWidget {
+  const LivrosPagina({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Livros Favoritos'),
+        backgroundColor: Colors.blue[800],
+      ),
+      body: ListView(
+        children: <Widget>[
+          ListTile(
+            title: Text('1. 1984'),
+            subtitle: Text('George Orwell'),
+          ),
+          ListTile(
+            title: Text('2. To Kill a Mockingbird'),
+            subtitle: Text('Harper Lee'),
+          ),
+          ListTile(
+            title: Text('3. The Great Gatsby'),
+            subtitle: Text('F. Scott Fitzgerald'),
+          ),
+        ],
+      ),
+    );
+  }
+}
